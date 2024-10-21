@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 40px;
+        }
+
+        .job-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .job-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .job-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .job-description {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+
+        .job-details {
+            font-size: 0.9rem;
+            color: #34495e;
+        }
+
+        .job-details strong {
+            color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            .job-card {
+                padding: 15px;
+            }
+
+            .job-title {
+                font-size: 1.2rem;
+            }
+
+            .job-description, .job-details {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Job Listings</h1>
+    <div class="job-list">
+        <% jobs.forEach(job => { %>
+            <div class="job-card">
+                <h2 class="job-title"><%= job.title %></h2>
+                <p class="job-description"><%= job.description %></p>
+                <p class="job-details"><strong>Experience Level:</strong> <%= job.experienceLevel %></p>
+                <p class="job-details"><strong>End Date:</strong> <%= job.endDate %></p>
+            </div>
+        <% }); %>
+    </div>
+</body>
+</html>

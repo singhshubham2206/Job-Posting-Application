@@ -5,7 +5,8 @@ dotenv.config();
 
 // Middleware to authenticate JWT
 const authenticate = (req, res, next) => {
-    const token = req.header('Authorization')?.split(' ')[1];
+    // Get token from cookies
+    const token = req.cookies.token;  
 
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized access' });
@@ -13,7 +14,10 @@ const authenticate = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        
+        // Attach the decoded user information to req.user
         req.user = decoded;
+        
         next();
     } catch (error) {
         return res.status(401).json({ message: 'Invalid token' });

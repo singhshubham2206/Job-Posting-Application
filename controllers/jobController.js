@@ -2,7 +2,7 @@
 const Job = require('../models/Job');
 const { sendJobEmail } = require('../emailService'); // Import the email service
 
-// POST /api/jobs
+// POST /api/jobs/post
 exports.createJob = async (req, res) => {
   try {
     const { title, description, experienceLevel, candidates, endDate } = req.body;
@@ -18,12 +18,14 @@ exports.createJob = async (req, res) => {
 
     await job.save();
 
+    console.log(candidates)  // check candidates
+
     // Send emails to all candidates
     for (const candidateEmail of candidates) {
       await sendJobEmail(candidateEmail, job);
     }
 
-    res.status(201).json({ message: 'Job posted successfully', job });
+    res.redirect('/api/jobs');
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
