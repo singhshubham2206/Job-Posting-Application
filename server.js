@@ -33,7 +33,7 @@ app.use('/api/jobs', jobRoutes);
 
 // Render EJS views
 app.get('/', (req, res) => {
-    res.render('index'); // Main page
+    res.render('index'); 
   });
   
 

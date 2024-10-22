@@ -1,24 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Board</title>
-</head>
-<body>
-    <h1>Welcome to Job Board</h1>
-    <a href="/signup">Sign Up</a>
-</body>
-</html> -->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Board</title>
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Link to the external CSS file -->
     <style>
         /* Global Styles */
         * {
@@ -32,17 +18,73 @@
             background-color: #f0f4f8;
             color: #333;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
+            padding-top: 60px; /* Adjust for fixed navbar height */
         }
 
         h1 {
             font-size: 2.5rem;
             color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        a {
+        /* Navigation Bar Styles */
+        nav {
+            width: 100%;
+            background-color: #3498db;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #2980b9;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            margin-top: 80px; /* Prevent content from hiding behind the navbar */
+            animation: fadeIn 0.5s; /* Add a fade-in effect */
+        }
+
+        .container p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .container a {
             display: inline-block;
             text-decoration: none;
             background-color: #3498db;
@@ -54,28 +96,58 @@
             margin-top: 20px;
         }
 
-        a:hover {
+        .container a:hover {
             background-color: #2980b9;
         }
 
-        .container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
+            .container {
+                padding: 20px; /* Reduce padding for smaller screens */
+            }
+
+            .container p {
+                font-size: 1rem; /* Adjust font size for smaller screens */
+            }
         }
 
-        .container p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #555;
+        /* Animation Styles */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/api/jobs/post">Job Form</a></li>
+            <li><a href="/api/jobs">Job List</a></li>
+            <li><a href="/api/auth/login">Log In</a></li>
+            <li><a href="/api/auth/logout">Log Out</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1>Welcome to Job Board</h1>
         <p>Find the perfect job or post a new job opportunity.</p>

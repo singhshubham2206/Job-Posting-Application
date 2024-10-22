@@ -56,7 +56,7 @@ exports.verifyOtp = async (req, res) => {
 
     // Generate JWT TOKEN 
     const token = jwt.sign({ id: company._id,name: company.name, email: company.email }, process.env.JWT_SECRET, {
-      expiresIn: '1h', 
+      expiresIn: '24h', 
     });
 
     console.log('Generated JWT Token:', token);
@@ -68,3 +68,10 @@ exports.verifyOtp = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+exports.logout = async (req, res) => {
+  // Clear the token cookie
+  res.clearCookie("token"); 
+  // Redirect to the home page
+  return res.redirect("/"); 
+}

@@ -19,4 +19,6 @@ router.post('/verify-otp', authController.verifyOtp);
 
 
 
+router.get('/logout', authController.logout);
+
 module.exports = router;
