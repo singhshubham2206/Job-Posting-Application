@@ -18,11 +18,35 @@ exports.createJob = async (req, res) => {
 
     await job.save();
 
-    console.log(candidates)  // check candidates
+
+    // Split candidates emails by comma, trim whitespace, and filter out empty strings
+    const candidateEmails = candidates
+      .split(',')
+      .map(email => email.trim())
+      .filter(email => email !== '');
+
+    // Ensure there are valid emails to send
+    if (candidateEmails.length === 0) {
+      return res.status(400).json({ message: 'No valid candidates provided.' });
+    }
 
     // Send emails to all candidates
-    for (const candidateEmail of candidates) {
-      await sendJobEmail(candidateEmail, job);
+    for (const candidateEmail of candidateEmails) {
+      // Log candidate email for debugging
+      console.log(`Sending email to: ${candidateEmail}`);
+
+      // Check if the candidateEmail is a valid email format (simple regex validation)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(candidateEmail)) {
+        console.error(`Invalid email address: ${candidateEmail}`);
+        continue; // Skip this iteration if the email is invalid
+      }
+
+      try {
+        await sendJobEmail(candidateEmail, job);
+      } catch (emailError) {
+        console.error(`Failed to send email to ${candidateEmail}:`, emailError);
+      }
     }
 
     res.redirect('/api/jobs');

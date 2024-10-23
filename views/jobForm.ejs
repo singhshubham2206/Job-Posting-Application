@@ -20,13 +20,13 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         nav {
             width: 100%;
             background-color: #3498db;
-            padding: 10px 0;
+            padding: 20px 0;
             position: fixed;
             top: 0;
             left: 0;
@@ -160,7 +160,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/api/jobs/post">Job Form</a></li>
             <li><a href="/api/jobs">Job List</a></li>
-            <li><a href="/api/auth/login">Log In</a></li>
+            <li><a href="/api/auth/signup">Log In</a></li>
             <li><a href="/api/auth/logout">Log Out</a></li>
             
         </ul>
@@ -169,22 +169,22 @@
     <div class="container">
         <h1>Job Form</h1>
         <form action="/api/jobs" method="POST">
-            <label for="jobTitle">Job Title:</label>
-            <input type="text" name="jobTitle" id="jobTitle" required>
+            <label for="title">Job Title:</label>
+            <input type="text" name="title" id="title" required>
 
-            <label for="jobDescription">Job Description:</label>
-            <textarea name="jobDescription" id="jobDescription" rows="4" required></textarea>
+            <label for="description">Job Description:</label>
+            <textarea name="description" id="description" required></textarea>
 
             <label for="experienceLevel">Experience Level:</label>
             <select name="experienceLevel" id="experienceLevel" required>
                 <option value="">Select Experience Level</option>
-                <option value="entry">Entry Level</option>
-                <option value="mid">Mid Level</option>
-                <option value="senior">Senior Level</option>
+                <option value="Entry-level">Entry-level</option>
+                <option value="Mid-level">Mid-level</option>
+                <option value="Senior-level">Senior-level</option>
             </select>
 
-            <label for="numberOfCandidates">Number of Candidates:</label>
-            <input type="number" name="numberOfCandidates" id="numberOfCandidates" required>
+            <label for="candidates">Candidates' Emails:</label>
+            <textarea name="candidates" id="candidates" placeholder="Enter emails of candidates" required></textarea>
 
             <label for="endDate">End Date:</label>
             <input type="date" name="endDate" id="endDate" required>

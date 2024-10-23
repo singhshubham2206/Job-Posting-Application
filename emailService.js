@@ -59,8 +59,12 @@
 
 const nodemailer = require('nodemailer');
 
+// Ethereal is a fake smtp server 
+// Ethereal is commonly used with the nodemailer library, which is a popular package in Node.js for sending emails.
+
+
 // Create transporter directly with Ethereal credentials
-const transporter = nodemailer.createTransport({ 
+const transporter = nodemailer.createTransport({
   host: 'smtp.ethereal.email',
   port: 587,
   secure: false, // true for 465, false for other ports
@@ -92,7 +96,7 @@ const sendJobEmail = async (candidateEmail, jobDetails) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log(`Email sent to ${candidateEmail}: ${nodemailer.getTestMessageUrl(info)}`);
+    console.log(`Email sent to ${candidateEmail}: click the link to check ${nodemailer.getTestMessageUrl(info)}`);
   } catch (error) {
     console.error(`Error sending email to ${candidateEmail}:`, error);
   }
